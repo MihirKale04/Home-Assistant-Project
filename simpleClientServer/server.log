@@ -1,0 +1,7 @@
+Connection from: ('192.168.56.1', 53653) 05/17/2024 11:59:51 AM
+From Client: Hello World 05/17/2024 11:59:59 AM
+To Client: Invalid input 05/17/2024 11:59:59 AM
+From Client: turn on 05/17/2024 12:00:02 PM
+To Client: turning on lights 05/17/2024 12:00:02 PM
+From Client: turn off 05/17/2024 12:00:03 PM
+To Client: turning off lights 05/17/2024 12:00:03 PM
