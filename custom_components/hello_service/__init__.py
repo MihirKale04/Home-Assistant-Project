@@ -1,24 +1,34 @@
-DOMAIN = "hello_service"
+"""
+The "hello world" custom component.
 
-ATTR_NAME = "name"
-DEFAULT_NAME = "World"
+This component implements the bare minimum that a component should implement.
 
+Configuration:
 
-def setup(hass, config):
-    """Set up is called when Home Assistant is loading our component."""
+To use the hello_world component you will need to add the following to your
+configuration.yaml file.
 
-    def handle_hello(call):
-        """Handle the service call."""
-        name = call.data.get(ATTR_NAME, DEFAULT_NAME)
-        hass.states.set("hello_service.hello", name)
-        #hass.states.async_set('binary_sensor.custom_server_status', 'on')
+hello_world:
+"""
+from __future__ import annotations
+import logging
 
-        
-        
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.typing import ConfigType
 
+# The domain of your component. Should be equal to the name of your component.
+DOMAIN = "hello_world"
 
+logger = logging.getLogger(__name__)
 
-    hass.services.register(DOMAIN, "hello", handle_hello)
+def setup(hass: HomeAssistant, config: ConfigType) -> bool:
+    """Set up a skeleton component."""
+    
 
-    # Return boolean to indicate that initialization was successful.
+    logger.info("Initializing hello_word")
+
+    # States are in the format DOMAIN.OBJECT_ID.
+    hass.states.set('hello_world.Hello_World', 'Works!')
+
+    # Return boolean to indicate that initialization was successfully.
     return True
