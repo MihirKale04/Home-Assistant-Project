@@ -1,6 +1,9 @@
 {
     "domain": "custom_server",
     "name": "simple server",
-    "version": "1.0",
-    "requirements": []
+    "codeowners": [],
+    "dependencies": [],
+    "iot_class": "cloud_polling",
+    "requirements": [],
+    "version": "0.1.0"
 }
