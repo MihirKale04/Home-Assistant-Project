@@ -1,0 +1,12 @@
+{
+    "port" : "9999", 
+    "users" : {
+        "mihir" : {
+            "pass" : "black"
+        },
+        "rahul" : {
+            "pass" : "fat"
+        }
+    }
+    
+}
