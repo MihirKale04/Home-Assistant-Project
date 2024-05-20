@@ -1,34 +1,81 @@
+"""custom server"""
+
+import asyncio
+import json
 import socket
+import logging
+from homeassistant.helpers import discovery
+from homeassistant.helpers.entity import Entity
 
-def send_message(message, host='127.0.0.1', port=6969):
-    """
-    Connects to the server at the specified host and port, sends a message,
-    and closes the connection.
+DOMAIN = "custom_server"
 
-    :param message: The message to send to the server.
-    :param host: The server's hostname or IP address. Defaults to localhost.
-    :param port: The server's port. Defaults to 9999.
-    """
-    try:
-        # Create a socket object
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            # Connect to the server
-            s.connect((host, port))
-            print(f"Connected to {host}:{port}")
+logger = logging.getLogger(__name__)
 
-            # Send the message
-            s.sendall(message.encode())
-            print(f"Sent: {message}")
+logger.info("reading server config file")
+with open("/config/custom_components/custom_server/serverConfig.json", 'r') as file:
+    data = file.read()
+config_dict = json.loads(data)
+logger.info("Config Dictionary: \n%s", json.dumps(config_dict, indent=4))
 
-    except ConnectionRefusedError:
-        print(f"Could not connect to server at {host}:{port}. Is it running?")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+async def async_setup(hass, config):
+    # Start your socket server in a background task
+    logger.info("Initializing Custom Server")
+    hass.loop.create_task(socket_server(hass))
+    return True
 
-# Example usage
-if __name__ == "__main__":
-    host = '192.168.68.79'  # Replace with your Home Assistant IP address if necessary
-    port = 6969             # Make sure this matches the port used in your custom component
-    message = "Rahul is a huge individual"
+async def socket_server(hass):
+    logger.debug("socket_server func has been called")
+    host = '0.0.0.0'
+    port = config_dict['port'] # Change to your desired port
 
-    send_message(message, host, port)
+    server = await asyncio.start_server(
+        lambda r, w: handle_client(r, w, hass),
+        host,
+        port
+    )
+
+    async with server:
+        await server.serve_forever()
+
+async def handle_client(reader, writer, hass):
+    logger.info("Handling Client")
+
+    # Receive credentials
+    credentials = await reader.read(100)
+    credentials = json.loads(credentials.decode())
+    username = credentials.get("username")
+    password = credentials.get("password")
+
+    if username in config_dict["users"] and config_dict["users"][username]["pass"] == password:
+        writer.write("Authentication successful".encode())
+        await writer.drain()
+    else:
+        writer.write("Authentication failed".encode())
+        await writer.drain()
+        writer.close()
+        await writer.wait_closed()
+        return
+
+
+    while True:
+        data = await reader.read(100)
+        if not data:
+            break
+        message = data.decode()
+        # Assuming you want to create an event in Home Assistant
+        await update_helper(hass, message)
+        #hass.bus.async_fire('from_custom_server', {"message": message})
+    writer.close()
+    await writer.wait_closed()
+
+
+async def update_helper(hass, message):
+    # Update the input_text helper with the received message
+    await hass.services.async_call(
+        'input_text',
+        'set_value',
+        {
+            'entity_id': 'input_text.your_component_helper',
+            'value': message
+        }
+    )
