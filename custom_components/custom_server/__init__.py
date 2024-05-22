@@ -1,9 +1,11 @@
 """custom server"""
 
 import asyncio
-import json
+import json 
 import socket
+import random
 import logging
+import base64
 from homeassistant.helpers import discovery
 from homeassistant.helpers.entity import Entity
 
@@ -16,6 +18,15 @@ with open("/config/custom_components/custom_server/serverConfig.json", 'r') as f
     data = file.read()
 config_dict = json.loads(data)
 logger.info("Config Dictionary: \n%s", json.dumps(config_dict, indent=4))
+
+
+# XOR decryption function
+def xor_decrypt(encrypted_text, key):
+    decrypted = []
+    for i in range(len(encrypted_text)):
+        decrypted.append(chr(ord(encrypted_text[i]) ^ ord(key[i % len(key)])))
+    return ''.join(decrypted)
+
 
 async def async_setup(hass, config):
     # Start your socket server in a background task
@@ -40,15 +51,35 @@ async def socket_server(hass):
 async def handle_client(reader, writer, hass):
     logger.info("Handling Client")
 
-    # Receive credentials
-    credentials = await reader.read(100)
-    credentials = json.loads(credentials.decode())
-    username = credentials.get("username")
-    password = credentials.get("password")
+    # Generate a random challenge message
+    challenge = ''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', k=10))
+    writer.write(challenge.encode())
+    await writer.drain()
+    logger.info("Challenge sent to client %s", challenge)
 
-    if username in config_dict["users"] and config_dict["users"][username]["pass"] == password:
-        writer.write("Authentication successful".encode())
-        await writer.drain()
+    # Receive credentials and challenge resepose
+    data = await reader.read(1024)
+    data = json.loads(data.decode())
+    username = data.get("username")
+    encrypted_password_base64 = data.get("password")
+    response_base64 = data.get("response")
+
+
+    encrypted_password = base64.b64decode(encrypted_password_base64).decode()
+    response = base64.b64decode(response_base64).decode()
+
+    logger.info("before decryption %s", encrypted_password)
+    actual_password = config_dict["users"].get(username, {}).get("pass", "")
+    decrypted_password = xor_decrypt(encrypted_password, actual_password)
+    logger.info("after decryption %s", decrypted_password)
+
+    if username in config_dict["users"] and decrypted_password == actual_password:
+        if challenge == xor_decrypt(response, actual_password):
+            writer.write("Authentication successful".encode())
+            await writer.drain()
+        else:
+            writer.write("Challenge response mismatch".encode())
+            await writer.drain()
     else:
         writer.write("Authentication failed".encode())
         await writer.drain()
