@@ -20,6 +20,7 @@ class WebSocketClient: NSObject, ObservableObject {
     private let url: URL
     private let accessToken: String
     private var messageId: Int
+    private var reconnectionTimer: Timer?
     
     @Published var isConnected: Bool = false
     @Published var connectionMessage: String?
@@ -92,6 +93,7 @@ class WebSocketClient: NSObject, ObservableObject {
                             DispatchQueue.main.async {
                                 self.isConnected = true
                                 self.connectionMessage = WebSocketError.connectionSuccessful.rawValue
+                                self.stopReconnectionAttempts()
                             }
                         case "auth_invalid":
                             DispatchQueue.main.async {
@@ -142,28 +144,28 @@ class WebSocketClient: NSObject, ObservableObject {
     }
     
     func armAlarm() {
-            let armAlarmMessage: [String: Any] = [
-                "id": messageId,
-                "type": "call_service",
-                "domain": "alarmo",
-                "service": "arm",
-                "service_data": ["entity_id": "alarm_control_panel.alarmo"]
-            ]
-            sendJSONMessage(armAlarmMessage)
-            messageId += 1
-        }
-        
-        func disarmAlarm() {
-            let disarmAlarmMessage: [String: Any] = [
-                "id": messageId,
-                "type": "call_service",
-                "domain": "alarmo",
-                "service": "disarm",
-                "service_data": ["entity_id": "alarm_control_panel.alarmo", "code": "1234"]
-            ]
-            sendJSONMessage(disarmAlarmMessage)
-            messageId += 1
-        }
+        let armAlarmMessage: [String: Any] = [
+            "id": messageId,
+            "type": "call_service",
+            "domain": "alarmo",
+            "service": "arm",
+            "service_data": ["entity_id": "alarm_control_panel.alarmo"]
+        ]
+        sendJSONMessage(armAlarmMessage)
+        messageId += 1
+    }
+    
+    func disarmAlarm() {
+        let disarmAlarmMessage: [String: Any] = [
+            "id": messageId,
+            "type": "call_service",
+            "domain": "alarmo",
+            "service": "disarm",
+            "service_data": ["entity_id": "alarm_control_panel.alarmo", "code": "1234"]
+        ]
+        sendJSONMessage(disarmAlarmMessage)
+        messageId += 1
+    }
     
     private func sendJSONMessage(_ message: [String: Any]) {
         if let jsonData = try? JSONSerialization.data(withJSONObject: message, options: []),
@@ -185,7 +187,20 @@ class WebSocketClient: NSObject, ObservableObject {
         DispatchQueue.main.async {
             self.connectionMessage = errorMessage
             self.isConnected = false
+            self.startReconnectionAttempts()
         }
+    }
+    
+    private func startReconnectionAttempts() {
+        stopReconnectionAttempts()
+        reconnectionTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
+            self?.connect()
+        }
+    }
+    
+    private func stopReconnectionAttempts() {
+        reconnectionTimer?.invalidate()
+        reconnectionTimer = nil
     }
 }
 
@@ -202,7 +217,7 @@ extension WebSocketClient: URLSessionWebSocketDelegate {
         DispatchQueue.main.async {
             self.connectionMessage = nil
             self.isConnected = false
+            self.startReconnectionAttempts()
         }
     }
 }
-
