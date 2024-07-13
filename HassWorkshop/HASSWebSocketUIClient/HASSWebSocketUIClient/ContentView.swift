@@ -18,42 +18,40 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Spacer()
-            if showingControlView {
+            
+            if webSocketClient.isConnected {
                 ControlView(webSocketClient: webSocketClient)
             } else {
                 VStack {
-                    Button("Connect") {
-                        showError = false
-                        webSocketClient.connect()
-                    }
-                    .padding()
                     if showError {
-                        Text("Connection Failed")
+                        Text("Unable to Connect")
                             .padding()
                             .foregroundColor(.red)
                     }
                 }
             }
+            
             Spacer()
+            
             Text(webSocketClient.isConnected ? "Connected" : "Disconnected")
                 .padding()
                 .foregroundColor(webSocketClient.isConnected ? .green : .red)
         }
-        .onChange(of: webSocketClient.isConnected) { newValue in
-            showingControlView = newValue
+        .onAppear {
+            webSocketClient.connect()
         }
         .onChange(of: webSocketClient.connectionMessage) { message in
             if message == WebSocketError.connectionFailed.rawValue && !webSocketClient.isConnected {
-                        showError = true
+                showError = true
             }
         }
         .padding()
     }
-} 
+}
 
 struct ControlView: View {
     @ObservedObject var webSocketClient: WebSocketClient
-    
+        
     var body: some View {
         VStack {
             Button("Turn On") {
@@ -70,14 +68,9 @@ struct ControlView: View {
                 webSocketClient.armAlarm()
             }
             .padding()
-                        
+            
             Button("Disarm Alarm") {
                 webSocketClient.disarmAlarm()
-            }
-            .padding()
-            
-            Button("Disconnect") {
-                webSocketClient.disconnect()
             }
             .padding()
         }
