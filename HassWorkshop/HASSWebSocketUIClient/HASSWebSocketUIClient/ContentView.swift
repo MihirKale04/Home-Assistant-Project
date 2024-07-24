@@ -8,15 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var webSocketClient = WebSocketClient(
-        url: URL(string: "ws://192.168.68.79:8123/api/websocket")!,
-        accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIxNGI5YzNiZDYxNmE0NDhmYjk1YjNiZWUwZWFlZWU2NiIsImlhdCI6MTcxODc1NTU0NywiZXhwIjoyMDM0MTE1NTQ3fQ.s2k4dEZAJryVZE-BhCWib0yuLR7b-QeyW2t2k5pJ8C8" // Replace with your actual access token
-    )
+    @StateObject private var webSocketClient: WebSocketClient
     @State private var showingControlView = false
     @State private var showError = false
+    @State private var showingConfiguration = false
+    
+    init() {
+        let urlString = UserDefaults.standard.string(forKey: "webSocketURL") ?? ""
+        let accessToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
+        if let url = URL(string: urlString) {
+            _webSocketClient = StateObject(wrappedValue: WebSocketClient(url: url, accessToken: accessToken))
+        } else {
+            _webSocketClient = StateObject(wrappedValue: WebSocketClient(url: URL(string: "ws://default_url")!, accessToken: accessToken))
+        }
+    }
     
     var body: some View {
         VStack {
+        
+            HStack {
+                Spacer()
+                Button(action: {
+                    showingConfiguration = true
+                }) {
+                    Text("Configure")
+                        .padding(3)
+                        .background(Color(.darkGray))
+                        .foregroundColor(.gray)
+                        .cornerRadius(10)
+                        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                }
+                .padding([.top], 40)
+                Spacer()
+            }
+            
             Spacer()
             
             if webSocketClient.isConnected {
@@ -24,9 +49,12 @@ struct ContentView: View {
             } else {
                 VStack {
                     if showError {
-                        Text("Unable to Connect")
-                            .padding()
+                        Text("No Connection")
+                            .padding(10)
+                            //z`.background(Color(red: 0.2, green: 0.0, blue: 0.0))
+                            .font(.title3)
                             .foregroundColor(.red)
+                            .cornerRadius(5)
                     }
                 }
             }
@@ -45,35 +73,58 @@ struct ContentView: View {
                 showError = true
             }
         }
+        .sheet(isPresented: $showingConfiguration) {
+            ConfigurationView(onSave: {
+                reconnectWebSocketClient()
+            })
+        }
         .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color(red: 0.2, green: 0.2, blue: 0.2)) // Set background color
+        .edgesIgnoringSafeArea(.all) // Extend background color to safe area
+    }
+    
+    private func reconnectWebSocketClient() {
+        let urlString = UserDefaults.standard.string(forKey: "webSocketURL") ?? ""
+        let accessToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
+        if let url = URL(string: urlString) {
+            webSocketClient.disconnect()
+            webSocketClient.url = url
+            webSocketClient.accessToken = accessToken
+            webSocketClient.connect()
+        }
     }
 }
 
 struct ControlView: View {
     @ObservedObject var webSocketClient: WebSocketClient
-        
+    
     var body: some View {
-        VStack {
-            Button("Turn On") {
-                webSocketClient.turnOn()
-            }
-            .padding()
-            
-            Button("Turn Off") {
-                webSocketClient.turnOff()
-            }
-            .padding()
-            
+        VStack(spacing: 20) {
             Button("Arm Alarm") {
                 webSocketClient.armAlarm()
             }
-            .padding()
+            .frame(maxWidth: .infinity, maxHeight: 100)
+            .foregroundColor(.white)
+            .background(Color(red: 0.3, green: 0.1,  blue: 0.1))
+            .cornerRadius(30)
+            .shadow(radius: 10)
+            .font(.largeTitle)
+            .bold()
             
             Button("Disarm Alarm") {
                 webSocketClient.disarmAlarm()
             }
-            .padding()
+            .frame(maxWidth: .infinity, maxHeight: 100)
+            .foregroundColor(.white)
+            .background(Color(red: 0.1, green: 0.1,  blue: 0.2))
+            .cornerRadius(30)
+            .shadow(radius: 10)
+            .font(.largeTitle)
+            .bold()
         }
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
