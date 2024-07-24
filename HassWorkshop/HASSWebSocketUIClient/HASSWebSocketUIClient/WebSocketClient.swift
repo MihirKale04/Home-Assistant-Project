@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum WebSocketError: String {
     case websocketNotRunning = "WebSocket not running"
@@ -17,13 +18,16 @@ enum WebSocketError: String {
 class WebSocketClient: NSObject, ObservableObject {
     private var webSocketTask: URLSessionWebSocketTask?
     private var urlSession: URLSession?
-    private let url: URL
-    private let accessToken: String
+    var url: URL    
+    var accessToken: String
     private var messageId: Int
     private var reconnectionTimer: Timer?
     
     @Published var isConnected: Bool = false
     @Published var connectionMessage: String?
+    
+    @AppStorage("webSocketURL") private var storedURL: String = ""
+    @AppStorage("accessToken") private var storedAccessToken: String = ""
     
     init(url: URL, accessToken: String) {
         self.url = url
@@ -221,3 +225,5 @@ extension WebSocketClient: URLSessionWebSocketDelegate {
         }
     }
 }
+
+
