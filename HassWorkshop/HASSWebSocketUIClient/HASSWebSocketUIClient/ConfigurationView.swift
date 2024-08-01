@@ -10,7 +10,8 @@ import SwiftUI
 struct ConfigurationView: View {
     @AppStorage("username") private var username: String = ""
     @AppStorage("accessToken") private var accessToken: String = ""
-    @AppStorage("webSocketURL") private var webSocketURL: String = ""
+    @AppStorage("IPAddress") private var IPAddress: String = ""
+    @AppStorage("port") private var port: String = ""
     
     @Environment(\.presentationMode) var presentationMode
     var onSave: (() -> Void)? // Add this callback
@@ -18,18 +19,33 @@ struct ConfigurationView: View {
 
     
     var body: some View {
-        VStack {
-            TextField("Username", text: $username)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            TextField("Access Token", text: $accessToken)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            TextField("WebSocket URL", text: $webSocketURL)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+        VStack(spacing: 30) {
+            Spacer()
+            VStack(){
+                TextField("Username", text: $username)
+                    .frame(width: 300)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                Text("Username").foregroundColor(.white)
+            }
+            VStack{
+                TextField("Access Token", text: $accessToken)
+                    .frame(width: 300)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                Text("Access Token").foregroundColor(.white)
+            }
+            VStack{
+                TextField("IP Address", text: $IPAddress)
+                    .frame(width: 300)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                Text("IP Address").foregroundColor(.white)
+            }
+            VStack {
+                TextField("Port", text: $port)
+                    .frame(width: 300)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                Text("Port").foregroundColor(.white)
+            }
+            Spacer()
             
             Button("Save") {
                 onSave?() // Call the callback when Save is tapped

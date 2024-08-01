@@ -18,16 +18,16 @@ enum WebSocketError: String {
 class WebSocketClient: NSObject, ObservableObject {
     private var webSocketTask: URLSessionWebSocketTask?
     private var urlSession: URLSession?
-    var url: URL    
+    var url: URL
     var accessToken: String
     private var messageId: Int
     private var reconnectionTimer: Timer?
     
     @Published var isConnected: Bool = false
     @Published var connectionMessage: String?
+    @Published var alarmState: String = "Unknown"
     
-    @AppStorage("webSocketURL") private var storedURL: String = ""
-    @AppStorage("accessToken") private var storedAccessToken: String = ""
+    
     
     init(url: URL, accessToken: String) {
         self.url = url
@@ -99,10 +99,20 @@ class WebSocketClient: NSObject, ObservableObject {
                                 self.connectionMessage = WebSocketError.connectionSuccessful.rawValue
                                 self.stopReconnectionAttempts()
                             }
+                            sendGetStatesMessage()
+                            sendSubscribeEventsMessage()
                         case "auth_invalid":
                             DispatchQueue.main.async {
                                 self.isConnected = false
                                 self.connectionMessage = WebSocketError.authError.rawValue
+                            }
+                        case "result":
+                            if let result = json["result"] as? [[String: Any]] {
+                                self.handleGetStatesResult(result)
+                            }
+                        case "event":
+                            if let event = json["event"] as? [String: Any] {
+                                self.handleStateChangedEvent(event)
                             }
                         default:
                             print("Received message: \(json)")
@@ -123,29 +133,25 @@ class WebSocketClient: NSObject, ObservableObject {
         }
     }
     
-    func turnOn() {
-        let turnOnMessage: [String: Any] = [
+    private func sendGetStatesMessage() {
+        let getStatesMessage: [String: Any] = [
             "id": messageId,
-            "type": "call_service",
-            "domain": "switch",
-            "service": "turn_on",
-            "service_data": ["entity_id": "switch.wall_plug_mss110_main_channel"]
+            "type": "get_states"
         ]
-        sendJSONMessage(turnOnMessage)
+        sendJSONMessage(getStatesMessage)
         messageId += 1
     }
     
-    func turnOff() {
-        let turnOffMessage: [String: Any] = [
-            "id": messageId,
-            "type": "call_service",
-            "domain": "switch",
-            "service": "turn_off",
-            "service_data": ["entity_id": "switch.wall_plug_mss110_main_channel"]
-        ]
-        sendJSONMessage(turnOffMessage)
-        messageId += 1
-    }
+    private func sendSubscribeEventsMessage() {
+            let subscribeEventsMessage: [String: Any] = [
+                "id": messageId,
+                "type": "subscribe_events",
+                "event_type": "state_changed"
+            ]
+            sendJSONMessage(subscribeEventsMessage)
+            messageId += 1
+        }
+    
     
     func armAlarm() {
         let armAlarmMessage: [String: Any] = [
@@ -159,13 +165,13 @@ class WebSocketClient: NSObject, ObservableObject {
         messageId += 1
     }
     
-    func disarmAlarm() {
+    func disarmAlarm(code: String) {
         let disarmAlarmMessage: [String: Any] = [
             "id": messageId,
             "type": "call_service",
             "domain": "alarmo",
             "service": "disarm",
-            "service_data": ["entity_id": "alarm_control_panel.alarmo", "code": "1234"]
+            "service_data": ["entity_id": "alarm_control_panel.alarmo", "code": code]
         ]
         sendJSONMessage(disarmAlarmMessage)
         messageId += 1
@@ -175,6 +181,31 @@ class WebSocketClient: NSObject, ObservableObject {
         if let jsonData = try? JSONSerialization.data(withJSONObject: message, options: []),
            let jsonString = String(data: jsonData, encoding: .utf8) {
             sendMessage(jsonString)
+        }
+    }
+    
+    private func handleGetStatesResult(_ result: [[String: Any]]) {
+        for entity in result {
+            if let entityId = entity["entity_id"] as? String, entityId == "alarm_control_panel.alarmo" {
+                if let state = entity["state"] as? String {
+                    DispatchQueue.main.async {
+                        self.alarmState = state
+                    }
+                }
+                break
+            }
+        }
+    }
+    
+    private func handleStateChangedEvent(_ event: [String: Any]) {
+        if let eventData = event["data"] as? [String: Any],
+           let newState = eventData["new_state"] as? [String: Any],
+           let entityId = newState["entity_id"] as? String,
+           entityId == "alarm_control_panel.alarmo",
+           let state = newState["state"] as? String {
+            DispatchQueue.main.async {
+                self.alarmState = state
+            }
         }
     }
     

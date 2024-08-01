@@ -13,24 +13,24 @@ struct ContentView: View {
     @State private var showError = false
     @State private var showingConfiguration = false
     
+    
     init() {
-        let urlString = UserDefaults.standard.string(forKey: "webSocketURL") ?? ""
+        let IPAddress = UserDefaults.standard.string(forKey: "IPAddress") ?? ""
+        let port = UserDefaults.standard.string(forKey: "port") ?? ""
         let accessToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
-        if let url = URL(string: urlString) {
+        if let url = URL(string: "ws://\(IPAddress):\(port)/api/websocket") {
+            print(url)
             _webSocketClient = StateObject(wrappedValue: WebSocketClient(url: url, accessToken: accessToken))
         } else {
-            _webSocketClient = StateObject(wrappedValue: WebSocketClient(url: URL(string: "ws://default_url")!, accessToken: accessToken))
+            _webSocketClient = StateObject(wrappedValue: WebSocketClient(url: URL(string: "ws://192.168.68.79:8123/api/poop")!, accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIxNGI5YzNiZDYxNmE0NDhmYjk1YjNiZWUwZWFlZWU2NiIsImlhdCI6MTcxODc1NTU0NywiZXhwIjoyMDM0MTE1NTQ3fQ.s2k4dEZAJryVZE-BhCWib0yuLR7b-QeyW2t2k5pJ8C8"))
         }
     }
     
     var body: some View {
         VStack {
-        
             HStack {
                 Spacer()
-                Button(action: {
-                    showingConfiguration = true
-                }) {
+                Button(action: {showingConfiguration = true}) {
                     Text("Configure")
                         .padding(3)
                         .background(Color(.darkGray))
@@ -41,9 +41,60 @@ struct ContentView: View {
                 .padding([.top], 40)
                 Spacer()
             }
-            
+            if webSocketClient.isConnected {
+                if (webSocketClient.alarmState == "disarmed") {
+                    Text("DISARMED")
+                        .padding(5)
+                        .font(.callout)
+                        .background(Color(red: 0.3, green: 0.3, blue: 0.3))
+                        .foregroundStyle(Color(red: 0.2, green: 0.2, blue: 0.2))
+                        .cornerRadius(/*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/)
+                        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                        .bold()
+                }
+                if (webSocketClient.alarmState == "arming") {
+                    Text("ARMING")
+                        .padding(5)
+                        .font(.callout)
+                        .background(Color(red: 0.8, green: 0.8, blue: 0.2))
+                        .foregroundStyle(Color(red: 0.2, green: 0.2, blue: 0.2))
+                        .cornerRadius(/*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/)
+                        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                        .bold()
+                }
+                if (webSocketClient.alarmState == "armed_away") {
+                    Text("ARMED AWAY")
+                        .padding(5)
+                        .font(.callout)
+                        .background(Color(red: 0.2, green: 0.8, blue: 0.2))
+                        .foregroundStyle(Color(red: 0.2, green: 0.2, blue: 0.2))
+                        .cornerRadius(/*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/)
+                        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                        .bold()
+                }
+                if (webSocketClient.alarmState == "pending") {
+                    Text("PENDING")
+                        .padding(5)
+                        .font(.callout)
+                        .background(Color(red: 0.8, green: 0.4, blue: 0.2))
+                        .foregroundStyle(Color(red: 0.2, green: 0.2, blue: 0.2))
+                        .cornerRadius(/*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/)
+                        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                        .bold()
+                }
+                if (webSocketClient.alarmState == "triggered") {
+                    Text("TRIGGERED")
+                        .padding(5)
+                        .font(.callout)
+                        .background(Color(red: 0.8, green: 0.2, blue: 0.2))
+                        .foregroundStyle(Color(red: 0.2, green: 0.2, blue: 0.2))
+                        .cornerRadius(/*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/)
+                        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                        .bold()
+                }
+                
+            }
             Spacer()
-            
             if webSocketClient.isConnected {
                 ControlView(webSocketClient: webSocketClient)
             } else {
@@ -51,16 +102,13 @@ struct ContentView: View {
                     if showError {
                         Text("No Connection")
                             .padding(10)
-                            //z`.background(Color(red: 0.2, green: 0.0, blue: 0.0))
                             .font(.title3)
                             .foregroundColor(.red)
                             .cornerRadius(5)
                     }
                 }
             }
-            
             Spacer()
-            
             Text(webSocketClient.isConnected ? "Connected" : "Disconnected")
                 .padding()
                 .foregroundColor(webSocketClient.isConnected ? .green : .red)
@@ -85,9 +133,10 @@ struct ContentView: View {
     }
     
     private func reconnectWebSocketClient() {
-        let urlString = UserDefaults.standard.string(forKey: "webSocketURL") ?? ""
+        let IPAddress = UserDefaults.standard.string(forKey: "IPAddress") ?? ""
+        let port = UserDefaults.standard.string(forKey: "port") ?? ""
         let accessToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
-        if let url = URL(string: urlString) {
+        if let url = URL(string: "ws://\(IPAddress):\(port)/api/websocket") {
             webSocketClient.disconnect()
             webSocketClient.url = url
             webSocketClient.accessToken = accessToken
@@ -96,37 +145,7 @@ struct ContentView: View {
     }
 }
 
-struct ControlView: View {
-    @ObservedObject var webSocketClient: WebSocketClient
-    
-    var body: some View {
-        VStack(spacing: 20) {
-            Button("Arm Alarm") {
-                webSocketClient.armAlarm()
-            }
-            .frame(maxWidth: .infinity, maxHeight: 100)
-            .foregroundColor(.white)
-            .background(Color(red: 0.3, green: 0.1,  blue: 0.1))
-            .cornerRadius(30)
-            .shadow(radius: 10)
-            .font(.largeTitle)
-            .bold()
-            
-            Button("Disarm Alarm") {
-                webSocketClient.disarmAlarm()
-            }
-            .frame(maxWidth: .infinity, maxHeight: 100)
-            .foregroundColor(.white)
-            .background(Color(red: 0.1, green: 0.1,  blue: 0.2))
-            .cornerRadius(30)
-            .shadow(radius: 10)
-            .font(.largeTitle)
-            .bold()
-        }
-        .padding()
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
+
 
 #Preview {
     ContentView()
