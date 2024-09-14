@@ -26,7 +26,7 @@ Once HACS is installed, you can now proceed to install and configure the Alarmo 
 - Set up actions that should occur when the alarm is triggered (e.g., sending notifications or activating sirens).
 - Go to the Users section in the Alarmo configuration to set up your master code and other user codes for disarming the system. (__NOTE: CODE MUST BE 4 DIGITS. TO CHANGE THIS YOU WILL NEED TO ALTER MOBILE APP IMPLEMENTATION__)
 
-# Generating a Home Assistant Long-Lived Access Token
+# 4. Generating a Home Assistant Long-Lived Access Token
 To allow the mobile app to communicate with Home Assistant, you'll need to generate a long-lived access token. This token is used for authenticating API requests.
  - In your Home Assistant interface, click on your user profile in the lower left corner.
  - Scroll down to the section labeled Long-Lived Access Tokens.
