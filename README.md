@@ -14,7 +14,7 @@ To use the alarm system, we first need to install the Home Assistant Community S
  - Restart Home Assistant
  - Add HACS to integrations
 
-#Installing and Setting Up Alarmo
+# Installing and Setting Up Alarmo
 Once HACS is installed, you can now proceed to install and configure the Alarmo integration for managing your home alarm system.
 ## Install Alarmo via HACS
 - Navigate to HACS in the Home Assistant sidebar.
