@@ -44,4 +44,5 @@ To allow the mobile app to communicate with Home Assistant, you'll need to gener
  - Once you provide a name, a token will be generated. Copy this token immediately as you will not be able to view it again. If you lose it, you will need to generate a new token.
  - Save this token securely in a safe location for use in your mobile app.
 
- 
+# 5. Setting Up Your Development Environment
+To build the mobile app, you will need to download and set up a development environment. Choose either Xcode (for iOS) or Android Studio (for Android) based on the platform you want to develop for.
