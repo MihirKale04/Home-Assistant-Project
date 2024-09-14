@@ -7,11 +7,21 @@ Before you can use the mobile app, you must have Home Assistant installed and ru
 You can follow the official Home Assistant installation guide for various platforms [here](https://www.home-assistant.io/installation/).
 
 # Installing HACS (Home Assistant Community Store)
+To use the alarm system, we first need to install the Home Assistant Community Store (HACS), which allows you to easily install and manage custom integrations like Alarmo.
  - Make sure you have file access to your Home Assistant instance (via SSH, Samba, or direct access to the files).
  - Enable Advanced Mode in Home Assistant
- - run this command in Terminal:
-    "wget -O - https://get.hacs.xyz | bash -"
-    on home assistant.
+ - run this command in terminal: wget -O - https://get.hacs.xyz | bash -
  - Restart Home Assistant
  - Add HACS to integrations
+
+#Installing and Setting Up Alarmo
+Once HACS is installed, you can now proceed to install and configure the Alarmo integration for managing your home alarm system.
+## Install Alarmo via HACS
+- Navigate to HACS in the Home Assistant sidebar.
+- Click on Integrations.
+- Search for Alarmo in the search bar.
+- Click on Alarmo and then click Download to install the integration.
+ 
+
+
  
