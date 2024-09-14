@@ -26,8 +26,14 @@ Once HACS is installed, you can now proceed to install and configure the Alarmo 
 - Set up actions that should occur when the alarm is triggered (e.g., sending notifications or activating sirens).
 - Go to the Users section in the Alarmo configuration to set up your master code and other user codes for disarming the system. (__NOTE: CODE MUST BE 4 DIGITS. TO CHANGE THIS YOU WILL NEED TO ALTER MOBILE APP IMPLEMENTATION__)
 ## Setting Up the Alarmo Control Card
-- 
-
+- Navigate to the Overview page in your Home Assistant dashboard.
+- Click on the three-dot menu in the top right corner and select Edit Dashboard.
+- While in edit mode, click the + Add Card button.
+- Scroll through the available card types and select the Alarm Panel card.
+- In the card configuration window, specify the `entity` that represents your alarm system. For Alarmo, this is typically `alarm_control_panel.alarmo`.
+- Customize the title or leave it as the default (e.g., "Home Alarm").
+- Configure any additional options, such as which buttons (e.g., arm home, arm away) to show on the card.
+  
 # 4. Generating a Home Assistant Long-Lived Access Token
 To allow the mobile app to communicate with Home Assistant, you'll need to generate a long-lived access token. This token is used for authenticating API requests.
  - In your Home Assistant interface, click on your user profile in the lower left corner.
