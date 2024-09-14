@@ -9,7 +9,7 @@ You can follow the official Home Assistant installation guide for various platfo
 # Installing HACS (Home Assistant Community Store)
  - Make sure you have file access to your Home Assistant instance (via SSH, Samba, or direct access to the files).
  - Enable Advanced Mode in Home Assistant
- - run this command in Terminal wget -O - https://get.hacs.xyz | bash - on home assistant.
+ - run this command in Terminal: wget -O - https://get.hacs.xyz | bash - on home assistant.
  - Restart Home Assistant
  - Add HACS to integrations
  
