@@ -25,6 +25,7 @@ Once HACS is installed, you can now proceed to install and configure the Alarmo 
 - Select which sensors (e.g., door/window sensors, motion detectors) are assigned to each security area.
 - Set up actions that should occur when the alarm is triggered (e.g., sending notifications or activating sirens).
 - Go to the Users section in the Alarmo configuration to set up your master code and other user codes for disarming the system.
+
 (__NOTE: CODE MUST BE 4 DIGITS. TO CHANGE THIS YOU WILL NEED TO ALTER MOBILE APP IMPLEMENTATION__)
 ## Setting Up the Alarmo Control Card
 - Navigate to the Overview page in your Home Assistant dashboard.
