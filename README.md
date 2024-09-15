@@ -60,7 +60,7 @@ To build the mobile app, you will need to download and set up a development envi
 
  <img width="455" alt="Screenshot 2024-09-14 at 11 00 31 PM" src="https://github.com/user-attachments/assets/36d0feb5-e382-4d87-82c0-5f1b5c79af73">
 
-- Select the file `build.gradle.kts (Module:app)`.
+- Select the file `build.gradle.kts (Module:app)` and add these lines of code to the dependencies `implementation(libs.androidx.appcompat)` `implementation("com.squareup.okhttp3:okhttp:4.12.0")`
 
 
 
