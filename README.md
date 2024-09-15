@@ -54,19 +54,25 @@ To build the mobile app, you will need to download and set up a development envi
 1. On the Android Studio welcome screen, click New Project.
 2. From the list of available templates, select Empty Activity. This will provide a basic template for your Android app with minimal setup.
 3. Follow a similar configuration to the one shown in the screenshot below:
+   
     <img width="891" alt="Screenshot 2024-09-14 at 10 56 10 PM" src="https://github.com/user-attachments/assets/9b5224ac-ec79-40d1-942a-c0306975ee02">
-4. After configuring the project, click Finish. Wait for the project to finish building. Once completed, your project file structure should look like this:
+    
+5. After configuring the project, click Finish. Wait for the project to finish building. Once completed, your project file structure should look like this:
 
-  <img width="628" alt="Screenshot 2024-09-15 at 12 18 52 AM" src="https://github.com/user-attachments/assets/f95fd101-5608-4929-9849-42b68b641cdd">
+    <img width="628" alt="Screenshot 2024-09-15 at 12 18 52 AM" src="https://github.com/user-attachments/assets/f95fd101-5608-4929-9849-42b68b641cdd">
 
-5. Next, open the file build.gradle.kts (Module: app) and add the following lines of code to the dependencies section:
-```implementation(libs.androidx.appcompat) implementation("com.squareup.okhttp3:okhttp:4.12.0")```
+5. Next, open the file `build.gradle.kts (Module: app)` and add the following lines of code to the dependencies section:
+```
+implementation(libs.androidx.appcompat)
+implementation("com.squareup.okhttp3:okhttp:4.12.0")
+```
+Refer to the screenshot below for proper placement:
+    <img width="519" alt="Screenshot 2024-09-14 at 11 51 09 PM" src="https://github.com/user-attachments/assets/98fb679c-74a6-44c5-830e-44fe223dd08c">
 
-  <img width="519" alt="Screenshot 2024-09-14 at 11 51 09 PM" src="https://github.com/user-attachments/assets/98fb679c-74a6-44c5-830e-44fe223dd08c">
-
-- In this github repo copy the contents of HassWorkshop/main/AndroidManifest.xml and paste it in the file called `AndroidManifest.xml`. Change line 13 to the appropriate name:
+## Updating the AndroidManifest.xml
+6. Open the file `AndroidManifest.xml`. Copy the contents from the HassWorkshop repository (found under `main/AndroidManifest.xml`) and paste them into your project's `AndroidManifest.xml` file. Don’t forget to change line 13 to the appropriate package name:
   
-  <img width="690" alt="Screenshot 2024-09-14 at 11 59 32 PM" src="https://github.com/user-attachments/assets/c7d01206-ff7d-4bbd-bd23-a29013cb83d7">
+   <img width="690" alt="Screenshot 2024-09-14 at 11 59 32 PM" src="https://github.com/user-attachments/assets/c7d01206-ff7d-4bbd-bd23-a29013cb83d7">
 
 - Copy the contents of HassWorkshop/main/java/com/mihir/homealarmsystem/MainActivity.kt and paste it in the file called `MainActivity.kt`. Change line 1 to the appropriate package name:
 
