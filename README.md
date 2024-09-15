@@ -85,7 +85,8 @@ Refer to the screenshot below for proper placement:
    - `activity_configuration.xml`
    - `activity_main.xml`
    - `keypad_layout.xml`
-     Copy the contents from the corresponding layout files in `HassWorkshop/main/res/layout/` and paste them into your new layout files.
+ 
+Copy the contents from the corresponding layout files in `HassWorkshop/main/res/layout/` and paste them into your new layout files.
 
   <img width="1163" alt="Screenshot 2024-09-15 at 12 12 03 AM" src="https://github.com/user-attachments/assets/b4584e26-83c0-4031-9a1e-f729e70cb4a7">
 
