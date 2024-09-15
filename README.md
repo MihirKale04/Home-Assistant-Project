@@ -97,6 +97,17 @@ Refer to the screenshot below for proper placement:
   
      <img width="870" alt="Screenshot 2024-09-15 at 12 40 07 AM" src="https://github.com/user-attachments/assets/10070e22-d4cc-4d4a-80b3-b8cdf8736e11">
 
+ ## Running and Configuring the App
+ After setting up the project files, you are now ready to run the app. However, before the app can function correctly, you need to configure it by entering the IP address and port of your Home Assistant instance, as well as the long-lived access token generated earlier.
+ 1. Press Run in Android Studio to launch the app. If everything is set up correctly, the app should now open on your connected device or emulator.
+ 2. When the app launches, you’ll see the configuration screen, as shown below:
+
+    <img width="365" alt="Screenshot 2024-09-15 at 12 46 04 AM" src="https://github.com/user-attachments/assets/7bff1fe9-613a-4dc6-8f70-12c1fcb26ca8">
+
+ 3. In the configuration screen:
+    - __Home Assistant URL__: Enter the IP address and port of your Home Assistant instance (e.g., `http://192.168.1.100:8123`).
+    - __Access Token__: Enter the long-lived access token you saved earlier during the Home Assistant setup process
+ 4. After entering the correct details, save the configuration. The app will now be able to communicate with Home Assistant, allowing you to control the alarm system.
 
 
   
