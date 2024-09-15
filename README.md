@@ -67,7 +67,7 @@ implementation(libs.androidx.appcompat)
 implementation("com.squareup.okhttp3:okhttp:4.12.0")
 ```
 Refer to the screenshot below for proper placement:
-   
+
    <img width="519" alt="Screenshot 2024-09-14 at 11 51 09 PM" src="https://github.com/user-attachments/assets/98fb679c-74a6-44c5-830e-44fe223dd08c">
 
 ## Updating the AndroidManifest.xml
@@ -87,7 +87,7 @@ Refer to the screenshot below for proper placement:
    - `keypad_layout.xml`
  
  Copy the contents from the corresponding layout files in `HassWorkshop/main/res/layout/` and paste them into your new layout files.
- 
+
    <img width="1163" alt="Screenshot 2024-09-15 at 12 12 03 AM" src="https://github.com/user-attachments/assets/b4584e26-83c0-4031-9a1e-f729e70cb4a7">
 
  ## Adding the ConfigurationActivity
