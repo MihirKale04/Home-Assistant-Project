@@ -64,6 +64,8 @@ To build the mobile app, you will need to download and set up a development envi
 
   <img width="519" alt="Screenshot 2024-09-14 at 11 51 09 PM" src="https://github.com/user-attachments/assets/98fb679c-74a6-44c5-830e-44fe223dd08c">
 
+- 
+
   
 
   
