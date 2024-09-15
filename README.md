@@ -47,8 +47,10 @@ To allow the mobile app to communicate with Home Assistant, you'll need to gener
 # 5. Setting Up Your Development Environment
 To build the mobile app, you will need to download and set up a development environment. Choose either Xcode (for iOS) or Android Studio (for Android) based on the platform you want to develop for.
 
-
-
 # ANDROID
+- Download and install Android Studio from the official site [here](https://developer.android.com/studio).
+- Follow the installation prompts for your operating system (available for Windows, macOS, and Linux).
+  
+
 
 
