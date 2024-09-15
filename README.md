@@ -86,11 +86,12 @@ Refer to the screenshot below for proper placement:
    - `activity_main.xml`
    - `keypad_layout.xml`
  
-Copy the contents from the corresponding layout files in `HassWorkshop/main/res/layout/` and paste them into your new layout files.
+ Copy the contents from the corresponding layout files in `HassWorkshop/main/res/layout/` and paste them into your new layout files.
 
   <img width="1163" alt="Screenshot 2024-09-15 at 12 12 03 AM" src="https://github.com/user-attachments/assets/b4584e26-83c0-4031-9a1e-f729e70cb4a7">
 
-- Now create a Kotlin/Class file `ConfigurationActivity` in the folder `homealarmcontrol` copying the contents of HassWorkshop/main/java/com/mihir/homealarmsystem/ConfigurationActivity.kt. Change line 1 appropriately:
+ ## Adding the ConfigurationActivity
+ 9. Finally, create a new Kotlin class file named `ConfigurationActivity` in your project’s `homealarmcontrol` folder. Copy the contents from `HassWorkshop/main/java/com/mihir/homealarmsystem/ConfigurationActivity.kt` and paste them into the new file. Update line 1 with the appropriate package name:
 
   <img width="862" alt="Screenshot 2024-09-15 at 12 36 13 AM" src="https://github.com/user-attachments/assets/59dd5a2d-07bd-4d4e-8dfa-2a20094ebe20">
   
