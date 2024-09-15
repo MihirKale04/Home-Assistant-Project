@@ -71,7 +71,8 @@ To build the mobile app, you will need to download and set up a development envi
 - Copy the contents of HassWorkshop/main/java/com/mihir/homealarmsystem/MainActivity.kt and paste it in the file called `MainActivity.kt`. Change line 1 to the appropriate package name:
 
   <img width="672" alt="Screenshot 2024-09-15 at 12 08 06 AM" src="https://github.com/user-attachments/assets/6f35e337-725f-4f10-9cc4-d8d0c08fbf8f">
-  
+
+- Now create three XML layout files with the names `activity_configuration.xml`, `activity_main.xml`, `keypad_layout.xml` copying the contents of HassWorkshop/main/res/layout/activity_configuration.xml, HassWorkshop/main/res/layout/activity_main.xml, HassWorkshop/main/res/layout/keypad_layout.xml respectively
 
   
 
