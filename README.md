@@ -67,7 +67,8 @@ implementation(libs.androidx.appcompat)
 implementation("com.squareup.okhttp3:okhttp:4.12.0")
 ```
 Refer to the screenshot below for proper placement:
-    <img width="519" alt="Screenshot 2024-09-14 at 11 51 09 PM" src="https://github.com/user-attachments/assets/98fb679c-74a6-44c5-830e-44fe223dd08c">
+   
+   <img width="519" alt="Screenshot 2024-09-14 at 11 51 09 PM" src="https://github.com/user-attachments/assets/98fb679c-74a6-44c5-830e-44fe223dd08c">
 
 ## Updating the AndroidManifest.xml
 6. Open the file `AndroidManifest.xml`. Copy the contents from the HassWorkshop repository (found under `main/AndroidManifest.xml`) and paste them into your project's `AndroidManifest.xml` file. Don’t forget to change line 13 to the appropriate package name:
