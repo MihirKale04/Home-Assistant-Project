@@ -76,6 +76,9 @@ To build the mobile app, you will need to download and set up a development envi
 
   <img width="1163" alt="Screenshot 2024-09-15 at 12 12 03 AM" src="https://github.com/user-attachments/assets/b4584e26-83c0-4031-9a1e-f729e70cb4a7">
 
+- Now create a Kotlin/Class file `ConfigurationActivity` in the folder `homealarmcontrol` copying the contents of HassWorkshop/main/java/com/mihir/homealarmsystem/ConfigurationActivity.kt. Change line 1 appropriately:
+
+
   
 
   
