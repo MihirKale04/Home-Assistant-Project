@@ -58,7 +58,7 @@ To build the mobile app, you will need to download and set up a development envi
 
 - Press finish and wait for the project to finsih building. Once it is done your project file structure should look like this:
 
- <img width="455" alt="Screenshot 2024-09-14 at 11 00 31 PM" src="https://github.com/user-attachments/assets/36d0feb5-e382-4d87-82c0-5f1b5c79af73">
+  <img width="628" alt="Screenshot 2024-09-15 at 12 18 52 AM" src="https://github.com/user-attachments/assets/f95fd101-5608-4929-9849-42b68b641cdd">
 
 - Select the file `build.gradle.kts (Module:app)` and add these lines of code to the dependencies `implementation(libs.androidx.appcompat)` `implementation("com.squareup.okhttp3:okhttp:4.12.0")`
 
