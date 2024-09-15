@@ -50,8 +50,11 @@ To build the mobile app, you will need to download and set up a development envi
 # ANDROID
 - Download and install Android Studio from the official site [here](https://developer.android.com/studio).
 - Follow the installation prompts for your operating system (available for Windows, macOS, and Linux).
+- On the welcome screen, click New Project.
+- From the list of available templates, select Empty Activity. This will create a basic template for your Android app with minimal setup.
+- Follow a similar setup to the following screenshot:
+  
 
-  <img width="907" alt="Screenshot 2024-09-14 at 10 46 26 PM" src="https://github.com/user-attachments/assets/900bd465-8410-4880-bbd4-98c97b699e19">
   
 
 
