@@ -53,7 +53,12 @@ To build the mobile app, you will need to download and set up a development envi
 - On the welcome screen, click New Project.
 - From the list of available templates, select Empty Activity. This will create a basic template for your Android app with minimal setup.
 - Follow a similar setup to the following screenshot:
+
   <img width="891" alt="Screenshot 2024-09-14 at 10 56 10 PM" src="https://github.com/user-attachments/assets/9b5224ac-ec79-40d1-942a-c0306975ee02">
+
+- Press finish and wait for the project to finsih building. Once it is done your project file structure should look like this:
+
+
   
   
 
