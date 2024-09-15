@@ -69,6 +69,8 @@ To build the mobile app, you will need to download and set up a development envi
   <img width="690" alt="Screenshot 2024-09-14 at 11 59 32 PM" src="https://github.com/user-attachments/assets/c7d01206-ff7d-4bbd-bd23-a29013cb83d7">
 
 - Copy the contents of HassWorkshop/main/java/com/mihir/homealarmsystem/MainActivity.kt and paste it in the file called `MainActivity.kt`. Change line 1 to the appropriate package name:
+
+  <img width="672" alt="Screenshot 2024-09-15 at 12 08 06 AM" src="https://github.com/user-attachments/assets/6f35e337-725f-4f10-9cc4-d8d0c08fbf8f">
   
 
   
