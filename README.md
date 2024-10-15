@@ -133,19 +133,25 @@ To build the app for iOS, you'll need a macOS device and Xcode installed. Xcode 
 3. Choose a location on your Mac to save the project and click Create.
 ## Project Overview in Xcode
 Once your project is loaded in Xcode, your IDE should look similar to the following screenshot:
+
     <img width="818" alt="image" src="https://github.com/user-attachments/assets/c299c4bc-f1d5-4539-9637-16830cb58139">
+    
 ## Copy Code into `ContentView.swift`
 1. Navigate to the `HassWorkshop/HASSWebSocketUIClient/HASSWebSocketUIClient/ContentView.swift` file in this GitHub repository and copy all the code.
 2. In your Xcode project, locate the `ContentView.swift` file in the file navigator (usually found in the left panel).
 3. Open `ContentView.swift` and select any existing code within the file.
 4. Right-click and choose Paste, or press Command + V on your keyboard to replace the contents with the copied code.
+ 
     <img width="830" alt="image" src="https://github.com/user-attachments/assets/3f001ae6-ddda-4db0-934e-43cc53962bbe">
+    
 ## Create `WebSocketClient.swift` File
 1. Create a New Swift File:
    - In your Xcode project, right-click on the project folder in the file navigator (the left panel).
    - Select New File from the context menu.
    - Choose Swift File and click Next.
+     
     <img width="727" alt="image" src="https://github.com/user-attachments/assets/bba58a89-c025-41cb-b1b0-0c47333c7694">
+    
 2. Name the new file `WebSocketClient.swift` and click Create.
 3. Copy the Code:
    - Navigate to the `HassWorkshop/HASSWebSocketUIClient/HASSWebSocketUIClient/WebSocketClient.swift` file in your GitHub repository.
@@ -153,7 +159,9 @@ Once your project is loaded in Xcode, your IDE should look similar to the follow
 4. Paste the Code:
    - Go back to your newly created `WebSocketClient.swift` file in Xcode.
    - Select any existing content in the file, right-click, and choose Paste, or press `Command + V` on your keyboard to replace the contents with the copied code.
+     
     <img width="960" alt="image" src="https://github.com/user-attachments/assets/d1de884d-a923-4147-88e9-b1bb7f0a0be9">
+    
 ## Create `ConfigurationView.swift` File
 1. Create a New Swift File:
    - In your Xcode project, right-click on the project folder in the file navigator (the left panel).
@@ -166,7 +174,9 @@ Once your project is loaded in Xcode, your IDE should look similar to the follow
 4. Paste the Code:
    - Go back to your newly created `ConfigurationView.swift` file in Xcode.
    - Select any existing content in the file, right-click, and choose Paste, or press `Command + V` on your keyboard to replace the contents with the copied code.
+     
     ![image](https://github.com/user-attachments/assets/b25dd172-1ea6-4884-8340-80b2868c6957)
+   
 ## Create `ControlView.swift` File
 1. Create a New Swift File:
    - In your Xcode project, right-click on the project folder in the file navigator (the left panel).
@@ -179,8 +189,9 @@ Once your project is loaded in Xcode, your IDE should look similar to the follow
 4. Paste the Code:
    - Go back to your newly created `ControlView.swift` file in Xcode.
    - Select any existing content in the file, right-click, and choose Paste, or press `Command + V` on your keyboard to replace the contents with the copied code.
+     
     ![image](https://github.com/user-attachments/assets/f97d8b50-5253-43f3-b654-3c3895167850)
-
+   
 ## Set Minimum Deployment Target to iOS 16.0
 1. Open Project Settings:
    - In Xcode, click on the project name at the top of the file navigator (the left panel). This will open the project settings.
@@ -190,6 +201,7 @@ Once your project is loaded in Xcode, your IDE should look similar to the follow
    - In the target settings, find the Deployment Info section. You may need to scroll down to see it.
 4. Set the Deployment Target:
    - Under iOS Deployment Target, select 16.0 from the dropdown menu.
+     
    ![image](https://github.com/user-attachments/assets/f89fe0dd-d668-4a63-b899-d13bca7889bc)
  
 
