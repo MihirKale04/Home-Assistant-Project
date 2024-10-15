@@ -134,7 +134,7 @@ To build the app for iOS, you'll need a macOS device and Xcode installed. Xcode 
 ## Project Overview in Xcode
 Once your project is loaded in Xcode, your IDE should look similar to the following screenshot:
 
-    <img width="818" alt="image" src="https://github.com/user-attachments/assets/c299c4bc-f1d5-4539-9637-16830cb58139">
+   <img width="818" alt="image" src="https://github.com/user-attachments/assets/c299c4bc-f1d5-4539-9637-16830cb58139">
     
 ## Copy Code into `ContentView.swift`
 1. Navigate to the `HassWorkshop/HASSWebSocketUIClient/HASSWebSocketUIClient/ContentView.swift` file in this GitHub repository and copy all the code.
