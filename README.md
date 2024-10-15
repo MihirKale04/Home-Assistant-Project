@@ -118,14 +118,18 @@ To build the app for iOS, you'll need a macOS device and Xcode installed. Xcode 
 1. Create a New Project:
    - On the Xcode welcome screen, click Create a new Xcode project.
    - In the dialog that appears, select App under the iOS section, then click Next.
-<img width="736" alt="image" src="https://github.com/user-attachments/assets/30182f4e-209c-474d-a7f9-13b70d017034">
+ 
+  <img width="736" alt="image" src="https://github.com/user-attachments/assets/30182f4e-209c-474d-a7f9-13b70d017034">
+
 2. Configure the Project:
    - enter a name for your project
    - f you are using a personal Apple ID for development, select your name from the Team dropdown. If you don’t have a development team set up, configure a free or paid Apple developer account.
    - Use a unique identifier.
    - Select Swift for the development language.
    - Choose SwiftUI for the user interface framework.
-<img width="732" alt="image" src="https://github.com/user-attachments/assets/bd61fd97-0426-4a8e-bb8a-6eed4c1c8703">
+
+  <img width="732" alt="image" src="https://github.com/user-attachments/assets/bd61fd97-0426-4a8e-bb8a-6eed4c1c8703">
+  
 3. Choose a location on your Mac to save the project and click Create.
 
 
