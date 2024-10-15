@@ -140,6 +140,22 @@ Once your project is loaded in Xcode, your IDE should look similar to the follow
 3. Open `ContentView.swift` and select any existing code within the file.
 4. Right-click and choose Paste, or press Command + V on your keyboard to replace the contents with the copied code.
     <img width="830" alt="image" src="https://github.com/user-attachments/assets/3f001ae6-ddda-4db0-934e-43cc53962bbe">
+## Create `WebSocketClient.swift` File
+1. Create a New Swift File:
+   - In your Xcode project, right-click on the project folder in the file navigator (the left panel).
+   - Select New File from the context menu.
+   - Choose Swift File and click Next.
+    <img width="727" alt="image" src="https://github.com/user-attachments/assets/bba58a89-c025-41cb-b1b0-0c47333c7694">
+2. Name the new file `WebSocketClient.swift` and click Create.
+3. Copy the Code:
+   - Navigate to the `HassWorkshop/HASSWebSocketUIClient/HASSWebSocketUIClient/WebSocketClient.swift` file in your GitHub repository.
+   - Open WebSocketClient.swift, select all the code, right-click, and choose Copy, or press Command + C on your keyboard.
+ 4. Paste the Code:
+   - Go back to your newly created `WebSocketClient.swift` file in Xcode.
+   - Select any existing content in the file, right-click, and choose Paste, or press `Command + V` on your keyboard to replace the contents with the copied code.
+    <img width="960" alt="image" src="https://github.com/user-attachments/assets/d1de884d-a923-4147-88e9-b1bb7f0a0be9">
+
+
 
 
 
