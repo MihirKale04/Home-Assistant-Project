@@ -179,6 +179,8 @@ Once your project is loaded in Xcode, your IDE should look similar to the follow
 4. Paste the Code:
    - Go back to your newly created `ControlView.swift` file in Xcode.
    - Select any existing content in the file, right-click, and choose Paste, or press `Command + V` on your keyboard to replace the contents with the copied code.
+    ![image](https://github.com/user-attachments/assets/f97d8b50-5253-43f3-b654-3c3895167850)
+
  
 
 
