@@ -203,6 +203,29 @@ Once your project is loaded in Xcode, your IDE should look similar to the follow
    - Under iOS Deployment Target, select 16.0 from the dropdown menu.
      
    ![image](https://github.com/user-attachments/assets/f89fe0dd-d668-4a63-b899-d13bca7889bc)
+
+## Run the App and Configure Settings
+1. Run the App:
+   - In Xcode, select the target device (iPhone simulator or a physical device) from the device selection menu at the top of the window.
+   - Click the Run button (the play icon) or press Command + R to build and run the app.
+2. Initial Status:
+   - When the app launches, it should display "No Connection" on the screen, indicating that it is not yet connected to the Home Assistant.
+
+    ![image](https://github.com/user-attachments/assets/5fb96217-ff08-45be-b312-15106447fdc4)
+   
+4. Configure the App:
+   - Press the Configure button within the app.
+   - Enter the following information when prompted:
+      - Access Token: Input the long-lived access token you generated earlier.
+      - IP Address: Enter the IP address of your Home Assistant instance.
+      - Port: Enter the port number used by your Home Assistant (typically 8123).
+
+    ![image](https://github.com/user-attachments/assets/25d9d76c-84b8-48db-8638-e9db9ac6c2d0)
+
+5. Save and Connect:
+   - After entering the details, confirm your settings. The app should now attempt to connect to the Home Assistant instance.
+6. Verify Connection:
+   - Once connected successfully, the app should update its status from "No Connection" to the current state of the alarm system.
  
 
 
