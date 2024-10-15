@@ -109,6 +109,10 @@ Refer to the screenshot below for proper placement:
     - __Access Token__: Enter the long-lived access token you saved earlier during the Home Assistant setup process
  4. After entering the correct details, save the configuration. The app will now be able to communicate with Home Assistant, allowing you to control the alarm system.
 
+# (IOS) IPHONE
+
+
+
 
   
 
