@@ -151,8 +151,8 @@ Once your project is loaded in Xcode, your IDE should look similar to the follow
    - Navigate to the `HassWorkshop/HASSWebSocketUIClient/HASSWebSocketUIClient/WebSocketClient.swift` file in your GitHub repository.
    - Open WebSocketClient.swift, select all the code, right-click, and choose Copy, or press Command + C on your keyboard.
  4. Paste the Code:
-   - Go back to your newly created `WebSocketClient.swift` file in Xcode.
-   - Select any existing content in the file, right-click, and choose Paste, or press `Command + V` on your keyboard to replace the contents with the copied code.
+    - Go back to your newly created `WebSocketClient.swift` file in Xcode.
+    - Select any existing content in the file, right-click, and choose Paste, or press `Command + V` on your keyboard to replace the contents with the copied code.
     <img width="960" alt="image" src="https://github.com/user-attachments/assets/d1de884d-a923-4147-88e9-b1bb7f0a0be9">
 ## Create `ConfigurationView.swift` File
 1. Create a New Swift File:
