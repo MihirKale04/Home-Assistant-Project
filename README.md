@@ -181,6 +181,16 @@ Once your project is loaded in Xcode, your IDE should look similar to the follow
    - Select any existing content in the file, right-click, and choose Paste, or press `Command + V` on your keyboard to replace the contents with the copied code.
     ![image](https://github.com/user-attachments/assets/f97d8b50-5253-43f3-b654-3c3895167850)
 
+## Set Minimum Deployment Target to iOS 16.0
+1. Open Project Settings:
+   - In Xcode, click on the project name at the top of the file navigator (the left panel). This will open the project settings.
+2. Select the Target:
+   - In the main panel, you’ll see a list of targets. Select the target that corresponds to your app (usually named after your project).
+3. Access Deployment Info:
+   - In the target settings, find the Deployment Info section. You may need to scroll down to see it.
+4. Set the Deployment Target:
+   - Under iOS Deployment Target, select 16.0 from the dropdown menu.
+
  
 
 
