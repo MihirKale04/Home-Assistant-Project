@@ -190,7 +190,7 @@ Once your project is loaded in Xcode, your IDE should look similar to the follow
    - In the target settings, find the Deployment Info section. You may need to scroll down to see it.
 4. Set the Deployment Target:
    - Under iOS Deployment Target, select 16.0 from the dropdown menu.
-
+   ![image](https://github.com/user-attachments/assets/f89fe0dd-d668-4a63-b899-d13bca7889bc)
  
 
 
