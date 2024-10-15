@@ -109,7 +109,7 @@ Refer to the screenshot below for proper placement:
     - __Access Token__: Enter the long-lived access token you saved earlier during the Home Assistant setup process
  4. After entering the correct details, save the configuration. The app will now be able to communicate with Home Assistant, allowing you to control the alarm system.
 
-# (IOS) IPHONE
+# IPHONE (IOS)
 To build the app for iOS, you'll need a macOS device and Xcode installed. Xcode is Apple's official IDE for iOS development, and it's required to run, build, and deploy apps on iPhone.
 ## Ensure You Have a Mac and Xcode Installed
 1. Using macOS: Make sure you are using a Mac running macOS.
