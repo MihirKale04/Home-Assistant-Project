@@ -118,7 +118,7 @@ To build the app for iOS, you'll need a macOS device and Xcode installed. Xcode 
 1. Create a New Project:
    - On the Xcode welcome screen, click Create a new Xcode project.
    - In the dialog that appears, select App under the iOS section, then click Next.
- 
+   
     <img width="736" alt="image" src="https://github.com/user-attachments/assets/30182f4e-209c-474d-a7f9-13b70d017034">
 
 2. Configure the Project:
@@ -127,7 +127,7 @@ To build the app for iOS, you'll need a macOS device and Xcode installed. Xcode 
    - Use a unique identifier.
    - Select Swift for the development language.
    - Choose SwiftUI for the user interface framework.
-
+     
     <img width="732" alt="image" src="https://github.com/user-attachments/assets/bd61fd97-0426-4a8e-bb8a-6eed4c1c8703">
   
 3. Choose a location on your Mac to save the project and click Create.
@@ -159,7 +159,7 @@ Once your project is loaded in Xcode, your IDE should look similar to the follow
 4. Paste the Code:
    - Go back to your newly created `WebSocketClient.swift` file in Xcode.
    - Select any existing content in the file, right-click, and choose Paste, or press `Command + V` on your keyboard to replace the contents with the copied code.
-     
+      
     <img width="960" alt="image" src="https://github.com/user-attachments/assets/d1de884d-a923-4147-88e9-b1bb7f0a0be9">
     
 ## Create `ConfigurationView.swift` File
