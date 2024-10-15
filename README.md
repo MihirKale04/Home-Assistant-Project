@@ -166,7 +166,7 @@ Once your project is loaded in Xcode, your IDE should look similar to the follow
  4. Paste the Code:
     - Go back to your newly created `ConfigurationView.swift` file in Xcode.
     - Select any existing content in the file, right-click, and choose Paste, or press `Command + V` on your keyboard to replace the contents with the copied code.
-
+   ![image](https://github.com/user-attachments/assets/b25dd172-1ea6-4884-8340-80b2868c6957)
 
 
 
